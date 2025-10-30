@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typhonian Current - Kenneth Grant Audiobook Collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a0b2e;
+            --secondary: #2d1b4e;
+            --accent: #8a2be2;
+            --gold: #d4af37;
+            --text: #f0e6ff;
+            --dark-text: #0a0414;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--accent);
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #c9b6e6;
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 2px;
+            background: var(--gold);
+            margin: 15px auto;
+        }
+        
+        .carousel-section {
+            background-color: var(--secondary);
+            padding: 40px 0;
+        }
+        
+        .carousel-container {
+            max-width: 800px; /* Reduced from 1000px */
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            max-height: 450px; /* Added max-height to limit image size */
+            object-fit: contain; /* Changed to contain to show full image */
+            display: block;
+            border-radius: 10px;
+            background-color: var(--primary); /* Background for transparent areas */
+        }
+        
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(26, 11, 46, 0.85);
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.5);
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .carousel-dot.active {
+            background: var(--gold);
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(26, 11, 46, 0.7);
+            color: var(--gold);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+        }
+        
+        .carousel-btn.prev {
+            left: 15px;
+        }
+        
+        .carousel-btn.next {
+            right: 15px;
+        }
+        
+        .why-matters {
+            background-color: var(--secondary);
+        }
+        
+        .content-block {
+            background: rgba(45, 27, 78, 0.7);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .bridge-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .bridge-item {
+            background: rgba(138, 43, 226, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .benefit {
+            text-align: center;
+            padding: 25px;
+            background: rgba(26, 11, 46, 0.5);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+        
+        .benefit:hover {
+            transform: translateY(-5px);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .what-you-get {
+            background-color: var(--primary);
+        }
+        
+        .included {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .included-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 8px;
+        }
+        
+        .included-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--gold);
+        }
+        
+        .pricing {
+            background-color: var(--secondary);
+            text-align: center;
+        }
+        
+        .price-box {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 40px;
+            background: rgba(26, 11, 46, 0.7);
+            border-radius: 10px;
+            border: 2px solid var(--gold);
+            position: relative;
+        }
+        
+        .regular-price {
+            text-decoration: line-through;
+            color: #c9b6e6;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .launch-price {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--accent), #6a0dad);
+            color: white;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 20px 0;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .guarantee {
+            margin-top: 20px;
+            font-style: italic;
+            color: #c9b6e6;
+        }
+        
+        .final-cta {
+            text-align: center;
+            padding: 60px 0;
+            background: linear-gradient(to bottom, var(--secondary), var(--primary));
+        }
+        
+        .final-message {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--dark-text);
+            color: #c9b6e6;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .launch-price {
+                font-size: 2.5rem;
+            }
+            
+            .content-block, .price-box {
+                padding: 20px;
+            }
+            
+            .carousel-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .carousel-container {
+                max-width: 95%;
+            }
+            
+            .carousel-item img {
+                max-height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">🜂</div>
+            <h1>Typhonian Current</h1>
+            <p class="subtitle">The Complete Kenneth Grant Audiobook Collection - Not a "set of audiobooks", it is initiation through sound</p>
+        </div>
+    </header>
+    
+    <section class="carousel-section">
+        <div class="container">
+            <h2 class="section-title">The Complete Typhonian Trilogy</h2>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/m59KpFFx/1-The-Magical-Revival.png" alt="The Magical Revival">
+                        <div class="carousel-caption">
+                            <h3>The Magical Revival</h3>
+                            <p>Volume 1: Foundations of the Typhonian Tradition</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/2700Gzd9/2-Aleister-Crowley-and-the-Hidden-God.png" alt="Aleister Crowley and the Hidden God">
+                        <div class="carousel-caption">
+                            <h3>Aleister Crowley and the Hidden God</h3>
+                            <p>Volume 2: Exploring the Crowley Connection</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/sJyzZKvV/3-Cults-of-the-Shadow.png" alt="Cults of the Shadow">
+                        <div class="carousel-caption">
+                            <h3>Cults of the Shadow</h3>
+                            <p>Volume 3: Nightside Magick and Qliphothic Practices</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/xS8CHscs/4-Nightside-of-Eden.png" alt="Nightside of Eden">
+                        <div class="carousel-caption">
+                            <h3>Nightside of Eden</h3>
+                            <p>Volume 4: Qabalah and the Dark Side of the Tree</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/tM9TqJST/5-Outside-the-Circles-of-Time.png" alt="Outside the Circles of Time">
+                        <div class="carousel-caption">
+                            <h3>Outside the Circles of Time</h3>
+                            <p>Volume 5: Exploring Non-Linear Consciousness</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/zWn169M4/6-Hecates-Fountain.png" alt="Hecate's Fountain">
+                        <div class="carousel-caption">
+                            <h3>Hecate's Fountain</h3>
+                            <p>Volume 6: The Goddess and the Dark Current</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/p6XZv30L/7-Outer-Gateways.png" alt="Outer Gateways">
+                        <div class="carousel-caption">
+                            <h3>Outer Gateways</h3>
+                            <p>Volume 7: The Final Gateway of Initiation</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/7NnJbCtt/8-Beyond-The-Mauve-Zone.png" alt="Beyond the Mauve Zone">
+                        <div class="carousel-caption">
+                            <h3>Beyond the Mauve Zone</h3>
+                            <p>Volume 8: Exploring Consciousness Beyond Known Realms</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://i.ibb.co/F4tMdMpv/9-The-Ninth-Arch.png" alt="The Ninth Arch">
+                        <div class="carousel-caption">
+                            <h3>The Ninth Arch</h3>
+                            <p>Volume 9: Complete Reference and Practices</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+                
+                <div class="carousel-nav">
+                    <div class="carousel-dot active"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                    <div class="carousel-dot"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="why-matters">
+        <div class="container">
+            <h2 class="section-title">🜂 Why This Collection Matters</h2>
+            
+            <div class="content-block">
+                <p>This is not a "set of audiobooks." It is a complete transmission of the Typhonian Current — a body of knowledge that shaped modern occultism far beyond Thelema, Chaos Magick, and Lovecraftian metaphysics.</p>
+            </div>
+            
+            <div class="content-block">
+                <p>Most occult material is recycled, diluted, or derivative. Kenneth Grant is none of those things. His work stands as the bridge between:</p>
+                
+                <div class="bridge-list">
+                    <div class="bridge-item">Western esotericism</div>
+                    <div class="bridge-item">Eastern tantric currents</div>
+                    <div class="bridge-item">Nightside and Qliphotic magick</div>
+                    <div class="bridge-item">Extraterrestrial occult symbolism</div>
+                    <div class="bridge-item">Dream-gate methods and trance communication</div>
+                    <div class="bridge-item">The hidden legacy of Aleister Crowley</div>
+                </div>
+            </div>
+            
+            <h3 class="section-title">This audiobook collection gives you:</h3>
+            
+            <div class="benefits">
+                <div class="benefit">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Direct Immersion</h3>
+                    <p>Direct immersion into Grant's original current</p>
+                </div>
+                
+                <div class="benefit">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Rare Content</h3>
+                    <p>Hours of rare content unavailable in audio form anywhere else</p>
+                </div>
+                
+                <div class="benefit">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Structured Journey</h3>
+                    <p>A structured journey through the entire Typhonian corpus</p>
+                </div>
+                
+                <div class="benefit">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Flexible Study</h3>
+                    <p>The ability to study while meditating, traveling, or resting</p>
+                </div>
+                
+                <div class="benefit">
+                    <div class="benefit-icon">⭐</div>
+                    <h3>Lifetime Access</h3>
+                    <p>Lifetime access — your temple library, always with you</p>
+                </div>
+            </div>
+            
+            <div class="content-block">
+                <p><strong>This is not entertainment.</strong> It is initiation through sound — designed to alter perception, deepen gnosis, and expand the psychic field.</p>
+                <p style="margin-top: 15px; font-style: italic;">Those who know, know. Those who don't… are not meant to walk this path.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="what-you-get">
+        <div class="container">
+            <h2 class="section-title">🜄 What You Receive</h2>
+            
+            <div class="included">
+                <div class="included-item">
+                    <div class="included-icon">✓</div>
+                    <div>
+                        <h3>The complete Kenneth Grant audiobook collection</h3>
+                        <p>All volumes of the Typhonian work</p>
+                    </div>
+                </div>
+                
+                <div class="included-item">
+                    <div class="included-icon">✓</div>
+                    <div>
+                        <h3>Permanent access</h3>
+                        <p>Your access never expires</p>
+                    </div>
+                </div>
+                
+                <div class="included-item">
+                    <div class="included-icon">✓</div>
+                    <div>
+                        <h3>High-quality audio files</h3>
+                        <p>Professional production for complete immersion</p>
+                    </div>
+                </div>
+                
+                <div class="included-item">
+                    <div class="included-icon">✓</div>
+                    <div>
+                        <h3>Exclusive early-access status</h3>
+                        <p>You are part of the inner circle</p>
+                    </div>
+                </div>
+                
+                <div class="included-item">
+                    <div class="included-icon">✓</div>
+                    <div>
+                        <h3>"The Ninth Arch" guaranteed</h3>
+                        <p>Receive the ninth volume automatically upon release at no extra cost</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-block" style="margin-top: 40px; text-align: center;">
+                <p><strong>You are not buying files — you are securing a seat in a lineage.</strong></p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="pricing">
+        <div class="container">
+            <h2 class="section-title">🜁 Investment</h2>
+            
+            <div class="price-box">
+                <p class="regular-price">Regular Price: $111 USD</p>
+                <p class="launch-price">Launch Price: $88 USD</p>
+                
+                <button class="cta-button" id="https://horusaudiobook.gumroad.com/l/gsypu?wanted=true">Enter the Current</button>
+                
+                <p class="guarantee">Enroll now and receive the ninth volume automatically upon release.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="final-cta">
+        <div class="container">
+            <h2 class="section-title">🜃 For the seeker who walks past the threshold</h2>
+            
+            <div class="final-message">
+                <p>If you feel called to this material, that is not coincidence.</p>
+                <p>The current chooses its vessels.</p>
+                <p style="margin-top: 20px; font-size: 1.4rem;"><strong>Enter the Current. Claim the Work.</strong></p>
+            </div>
+            
+            <button class="cta-button" id="https://horusaudiobook.gumroad.com/l/gsypu?wanted=true">Secure My Access Now</button>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>© 2025 Hórus Audiobook. All rights reserved.</p>
+            <p>This offer is exclusive to serious seekers of the occult path.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Carousel functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const items = document.querySelectorAll('.carousel-item');
+            const dots = document.querySelectorAll('.carousel-dot');
+            const prevBtn = document.querySelector('.carousel-btn.prev');
+            const nextBtn = document.querySelector('.carousel-btn.next');
+            let currentIndex = 0;
+            const totalItems = items.length;
+            
+            // Update carousel position
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+                
+                // Update dots
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+            
+            // Next slide
+            function nextSlide() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            }
+            
+            // Previous slide
+            function prevSlide() {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel();
+            }
+            
+            // Dot click event
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+            
+            // Button events
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+            
+            // Auto-advance carousel every 5 seconds
+            setInterval(nextSlide, 5000);
+            
+            // Payment button functionality
+            document.getElementById('paymentButton').addEventListener('click', function() {
+                alert('Redirecting to secure payment page...');
+                // In a real implementation: window.location.href = 'https://yoursite.com/checkout';
+            });
+            
+            document.getElementById('finalPaymentButton').addEventListener('click', function() {
+                alert('Redirecting to secure payment page...');
+                // In a real implementation: window.location.href = 'https://yoursite.com/checkout';
+            });
+        });
+    </script>
+</body>
+</html>
