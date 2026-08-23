@@ -4,137 +4,726 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Private Archive – Kenneth Grant Audio System</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-:root{--bg:#0d0618;--card:#1b0f2e;--accent:#8a2be2;--gold:#d4af37;--text:#f1e9ff}
-body{margin:0;font-family:Georgia,serif;background:var(--bg);color:var(--text)}
-.container{max-width:1100px;margin:auto;padding:20px}
-h1{font-size:2.4rem}
-section{padding:60px 0}
-.center{text-align:center}
-.card{background:var(--card);padding:30px;border-radius:12px;margin-bottom:25px}
-.cta{display:inline-block;padding:16px 40px;border-radius:50px;background:linear-gradient(90deg,#8a2be2,#5a0dad);color:#fff;text-decoration:none;font-weight:bold}
-.price{font-size:2.8rem;color:var(--gold)}
-.old{text-decoration:line-through;opacity:.6}
-.carousel{display:flex;overflow-x:auto;gap:15px;padding:20px 0}
-.carousel img{height:220px;border-radius:10px}
-.badge{color:var(--gold);font-size:.9rem;letter-spacing:2px;text-transform:uppercase}
+:root {
+  --bg: #0a0612;
+  --bg-elevated: #120b1f;
+  --card: #1a1029;
+  --card-border: rgba(212, 175, 55, 0.15);
+  --accent: #9b4dff;
+  --accent-dark: #6b21a8;
+  --gold: #d4af37;
+  --gold-soft: #e8d48b;
+  --text: #f5f0ff;
+  --muted: #b8a9d4;
+  --success: #4ade80;
+  --danger: #f87171;
+  --radius: 20px;
+  --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ========== HERO ========== */
+.hero {
+  position: relative;
+  padding: 48px 0 80px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(155, 77, 255, 0.25), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 60%, rgba(212, 175, 55, 0.08), transparent);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(212, 175, 55, 0.12);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--gold);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+
+.badge i { font-size: 0.7rem; }
+
+.hero h1 {
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #fff 30%, var(--gold-soft));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero .sub {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 620px;
+  margin: 0 auto 36px;
+  line-height: 1.7;
+}
+
+.hero-img {
+  max-width: 780px;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow), 0 0 80px rgba(155, 77, 255, 0.15);
+  margin: 0 auto 40px;
+  display: block;
+}
+
+/* ========== CTA BUTTONS ========== */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 42px;
+  border-radius: 100px;
+  background: linear-gradient(135deg, #a855f7, #6b21a8);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  box-shadow: 0 12px 40px rgba(107, 33, 168, 0.45), inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: all 0.25s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 50px rgba(107, 33, 168, 0.55), inset 0 1px 0 rgba(255,255,255,0.2);
+  filter: brightness(1.08);
+}
+
+.cta-secondary {
+  background: transparent;
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  color: var(--gold);
+  box-shadow: none;
+}
+
+.cta-secondary:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--gold);
+  box-shadow: none;
+  filter: none;
+}
+
+.cta-large {
+  padding: 22px 56px;
+  font-size: 1.2rem;
+}
+
+/* ========== SECTIONS ========== */
+section {
+  padding: 80px 0;
+}
+
+.section-label {
+  display: block;
+  text-align: center;
+  color: var(--gold);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  margin-bottom: 16px;
+}
+
+.section-sub {
+  text-align: center;
+  color: var(--muted);
+  max-width: 560px;
+  margin: 0 auto 48px;
+  font-size: 1.05rem;
+}
+
+/* ========== COLLECTION IMAGE ========== */
+.collection-img {
+  max-width: 920px;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--shadow);
+  display: block;
+  margin: 0 auto;
+}
+
+/* ========== PROBLEM / SHIFT CARDS ========== */
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(155, 77, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+
+.card h3 {
+  font-size: 1.45rem;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* ========== VALUE STACK ========== */
+.value-stack {
+  background: linear-gradient(180deg, rgba(155, 77, 255, 0.08), transparent);
+  border-radius: 28px;
+  border: 1px solid var(--card-border);
+  padding: 48px 40px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.value-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 1.05rem;
+}
+
+.value-item:last-of-type {
+  border-bottom: none;
+}
+
+.value-item .name {
+  color: var(--text);
+}
+
+.value-item .price {
+  color: var(--gold);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.value-total {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 2px solid rgba(212, 175, 55, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.value-total .amount {
+  color: var(--gold);
+  font-size: 1.6rem;
+}
+
+/* ========== BENEFITS ========== */
+.benefits-list {
+  list-style: none;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.benefits-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 1.05rem;
+}
+
+.benefits-list li:last-child { border-bottom: none; }
+
+.benefits-list .check {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(74, 222, 128, 0.15);
+  color: var(--success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+/* ========== PRICING BOX ========== */
+.pricing {
+  background: var(--card);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: 28px;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(155, 77, 255, 0.12);
+}
+
+.pricing::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--gold));
+}
+
+.pricing-img {
+  max-width: 320px;
+  width: 100%;
+  border-radius: 16px;
+  margin: 0 auto 28px;
+  display: block;
+  border: 1px solid var(--card-border);
+}
+
+.old-price {
+  font-size: 1.3rem;
+  color: var(--muted);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.current-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin: 8px 0 6px;
+}
+
+.price-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 28px;
+}
+
+.urgency {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(248, 113, 113, 0.12);
+  border: 1px solid rgba(248, 113, 113, 0.3);
+  color: #fca5a5;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 10px 18px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+
+.guarantee {
+  margin-top: 24px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ========== FAQ ========== */
+.faq-item {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.faq-item summary {
+  padding: 22px 26px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.faq-item summary::-webkit-details-marker { display: none; }
+
+.faq-item summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  color: var(--gold);
+  font-weight: 400;
+  transition: transform 0.2s;
+}
+
+.faq-item[open] summary::after {
+  content: '−';
+}
+
+.faq-item p {
+  padding: 0 26px 24px;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.7;
+}
+
+/* ========== FINAL CTA ========== */
+.final-cta {
+  text-align: center;
+  padding: 90px 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 100%, rgba(155, 77, 255, 0.18), transparent);
+}
+
+.final-cta h2 {
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  margin-bottom: 16px;
+}
+
+.final-cta p {
+  color: var(--muted);
+  max-width: 500px;
+  margin: 0 auto 36px;
+  font-size: 1.1rem;
+}
+
+/* ========== FOOTER ========== */
+footer {
+  text-align: center;
+  padding: 36px 24px;
+  background: #06030c;
+  color: var(--muted);
+  font-size: 0.88rem;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+
+/* ========== STICKY MOBILE CTA ========== */
+.sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 20px;
+  background: rgba(10, 6, 18, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--card-border);
+  z-index: 100;
+  text-align: center;
+}
+
+.sticky-cta .cta {
+  width: 100%;
+  max-width: 400px;
+  padding: 16px 24px;
+}
+
+@media (max-width: 700px) {
+  .hero { padding: 36px 0 60px; }
+  section { padding: 56px 0; }
+  .value-stack, .pricing { padding: 36px 24px; }
+  .current-price { font-size: 3.4rem; }
+  .sticky-cta { display: block; }
+  body { padding-bottom: 80px; }
+  .grid-3 { gap: 16px; }
+}
 </style>
 </head>
 <body>
 
-<section class="center">
-<div class="container">
-<div class="badge">Private Audio Archive</div>
-<h1>This Material Is Not Publicly Distributed</h1>
-<p>
-The complete Kenneth Grant system — transformed into a fully immersive audio experience.
-<br><br>
-No fragmented texts. No confusion. Just direct access.
-</p>
-<a href="#buy" class="cta">Get Instant Access</a>
-</div>
+<!-- ========== HERO ========== -->
+<header class="hero">
+  <div class="container">
+    <div class="badge">
+      <i class="fas fa-lock"></i>
+      Private Audio Archive
+    </div>
+    <h1>The Complete Kenneth Grant System — Fully Transformed Into Audio</h1>
+    <p class="sub">
+      9 books. One structured current. No fragmented texts. No endless searching.
+      Direct, immersive access to the Typhonian tradition — while you walk, rest, or enter altered states.
+    </p>
+    <img
+      class="hero-img"
+      src="https://i.ibb.co/B5XfVqZh/KENNETH-GRANT-COLECTION-CAPA-GUMROAD.png"
+      alt="Kenneth Grant Private Audio Archive Cover"
+      width="780"
+      height="auto"
+    >
+    <a href="#buy" class="cta cta-large">
+      Get Instant Access — $333
+      <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
+</header>
+
+<!-- ========== COLLECTION ========== -->
+<section id="collection">
+  <div class="container">
+    <span class="section-label">The Complete Collection</span>
+    <h2 class="section-title">9 Books. One Seamless Audio Archive.</h2>
+    <p class="section-sub">
+      Every major work brought together in a single, carefully structured audio experience.
+    </p>
+    <img
+      class="collection-img"
+      src="https://i.ibb.co/JjKJMTbL/cc1ad3feae0b16e36ced7b897cfde9ac.jpg"
+      alt="Complete collection of 9 Kenneth Grant books"
+      width="220"
+      height="auto"
+    >
+  </div>
 </section>
 
+<!-- ========== PROBLEM / SOLUTION ========== -->
 <section>
-<div class="container">
-<h2 class="center">Full Archive Access</h2>
-<div class="carousel">
-<img src="https://i.ibb.co/m59KpFFx/1-The-Magical-Revival.png">
-<img src="https://i.ibb.co/2700Gzd9/2-Aleister-Crowley-and-the-Hidden-God.png">
-<img src="https://i.ibb.co/sJyzZKvV/3-Cults-of-the-Shadow.png">
-<img src="https://i.ibb.co/xS8CHscs/4-Nightside-of-Eden.png">
-<img src="https://i.ibb.co/tM9TqJST/5-Outside-the-Circles-of-Time.png">
-<img src="https://i.ibb.co/zWn169M4/6-Hecates-Fountain.png">
-<img src="https://i.ibb.co/p6XZv30L/7-Outer-Gateways.png">
-<img src="https://i.ibb.co/7NnJbCtt/8-Beyond-The-Mauve-Zone.png">
-<img src="https://i.ibb.co/F4tMdMpv/9-The-Ninth-Arch.png">
-</div>
-</div>
+  <div class="container">
+    <span class="section-label">Why This Exists</span>
+    <h2 class="section-title">Most People Never Finish Grant</h2>
+    <p class="section-sub">The material is dense, complex, and almost impossible to fully absorb through reading alone.</p>
+
+    <div class="grid-3" style="margin-top: 48px;">
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-book-open"></i></div>
+        <h3>The Problem</h3>
+        <p>Grant’s writings demand deep focus and repeated reading. Most start with high intention. Almost none complete the system.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-headphones"></i></div>
+        <h3>The Shift</h3>
+        <p>This archive converts the entire body of work into high-quality audio — so you absorb it passively, repeatedly, and deeply.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i class="fas fa-bolt"></i></div>
+        <h3>What You Actually Get</h3>
+        <p>You are not buying “audiobooks”. You are gaining direct access to a complete, structured current — ready for immersion.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ========== BENEFITS ========== -->
 <section>
-<div class="container">
-<div class="card">
-<h2>Why Most People Never Access This Knowledge</h2>
-<p>
-Grant’s work is dense, complex, and almost impossible to fully absorb through reading alone.
-</p>
-<p style="margin-top:15px;">
-Most start. Almost none finish.
-</p>
-</div>
-
-<div class="card">
-<h2>The Shift</h2>
-<p>
-This archive converts the entire system into audio — allowing you to absorb it passively.
-</p>
-<p style="margin-top:15px;">
-While walking. While resting. While entering altered states.
-</p>
-</div>
-
-<div class="card">
-<h2>You Are Not Buying Audio</h2>
-<p>
-You are gaining access to a complete, structured current.
-</p>
-</div>
-
-</div>
+  <div class="container">
+    <span class="section-label">What Changes</span>
+    <h2 class="section-title">Designed for Real Absorption</h2>
+    <ul class="benefits-list">
+      <li>
+        <span class="check"><i class="fas fa-check"></i></span>
+        <span>Listen while walking, driving, or resting — no more forcing dense text when energy is low.</span>
+      </li>
+      <li>
+        <span class="check"><i class="fas fa-check"></i></span>
+        <span>Repeat key sections easily. Depth comes from repetition, not force.</span>
+      </li>
+      <li>
+        <span class="check"><i class="fas fa-check"></i></span>
+        <span>Structured sequence so the current builds naturally instead of scattered fragments.</span>
+      </li>
+      <li>
+        <span class="check"><i class="fas fa-check"></i></span>
+        <span>Lifetime ownership. Download once, keep forever. No subscriptions.</span>
+      </li>
+      <li>
+        <span class="check"><i class="fas fa-check"></i></span>
+        <span>Instant delivery the moment you complete payment.</span>
+      </li>
+    </ul>
+  </div>
 </section>
 
+<!-- ========== VALUE STACK ========== -->
 <section>
-<div class="container">
-<div class="card">
-<h2>Total Value Breakdown</h2>
-<ul style="line-height:2;">
-<li>9 Complete Audiobooks → $450+</li>
-<li>Rare & hard-to-access material → priceless</li>
-<li>Years of study compressed → invaluable</li>
-</ul>
-<p style="margin-top:20px;"><strong>Total Estimated Value: $709+</strong></p>
-</div>
-</div>
+  <div class="container">
+    <span class="section-label">Value Breakdown</span>
+    <h2 class="section-title">What You’re Actually Receiving</h2>
+    <p class="section-sub">Individual value of the material far exceeds the archive price.</p>
+
+    <div class="value-stack">
+      <div class="value-item">
+        <span class="name">9 Complete Audiobooks</span>
+        <span class="price">$450+</span>
+      </div>
+      <div class="value-item">
+        <span class="name">Rare & hard-to-access material</span>
+        <span class="price">Priceless</span>
+      </div>
+      <div class="value-item">
+        <span class="name">Years of structured study compressed</span>
+        <span class="price">Invaluable</span>
+      </div>
+      <div class="value-item">
+        <span class="name">Lifetime access + instant delivery</span>
+        <span class="price">Included</span>
+      </div>
+      <div class="value-total">
+        <span>Total Estimated Value</span>
+        <span class="amount">$709+</span>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ========== PRICING / BUY ========== -->
 <section id="buy">
-<div class="container center">
-<div class="card">
-<p class="old">$709</p>
-<p class="price">$111</p>
+  <div class="container">
+    <span class="section-label">Limited Access</span>
+    <h2 class="section-title">One-Time Investment</h2>
+    <p class="section-sub">Price increases as the archive expands. Current rate is locked only while this page remains live.</p>
 
-<p style="margin-top:10px;">or 3 equal monthly installments $37</p>
+    <div class="pricing">
+      <img
+        class="pricing-img"
+        src="https://i.ibb.co/vCxfNrLb/KENNETH-GRANT-COLECTION-CAPA-TRANSPARENTE.png"
+        alt="Kenneth Grant Audiobook Archive"
+        width="320"
+        height="auto"
+      >
 
-<p style="margin:15px 0;">
-⚠️ Price increases as archive expands.
-</p>
+      <div class="old-price">$709</div>
+      <div class="current-price">$333</div>
+      <p class="price-note">One payment. Lifetime ownership. Instant access.</p>
 
-<a href="https://horusaudiobook.gumroad.com/l/gsypu" class="cta">Unlock Full Access</a>
+      <div class="urgency">
+        <i class="fas fa-exclamation-triangle"></i>
+        Price increases as new material is added
+      </div>
 
-<p style="margin-top:15px;font-size:.9rem;opacity:.7;">
-Instant delivery. Lifetime ownership.
-</p>
-</div>
-</div>
+      <a href="https://horusaudiobook.gumroad.com/l/gsypu" class="cta cta-large" target="_blank" rel="noopener">
+        Buy Now — $333
+        <i class="fas fa-lock"></i>
+      </a>
+
+      <div class="guarantee">
+        <i class="fas fa-shield-alt"></i>
+        Secure checkout via Gumroad · Instant delivery
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ========== FAQ ========== -->
 <section>
-<div class="container center">
-<div class="card">
-<h2>This Either Resonates — Or It Doesn't</h2>
-<p>If you understand the value, no explanation is needed.</p>
-<p style="margin-top:15px;">If not, this is not for you.</p>
+  <div class="container" style="max-width: 720px;">
+    <span class="section-label">Common Questions</span>
+    <h2 class="section-title">FAQ</h2>
 
-<a href="#buy" class="cta" style="margin-top:20px;">Access Now</a>
-</div>
-</div>
+    <details class="faq-item">
+      <summary>How do I receive the files?</summary>
+      <p>Immediately after payment you receive a download link via email. Files are yours to keep permanently. No streaming-only restrictions.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Is this the complete collection?</summary>
+      <p>Yes. The archive currently contains 9 complete audiobooks covering the core Kenneth Grant system presented as a structured sequence.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Will the price stay at $333?</summary>
+      <p>No. As new material is added to the archive the price will increase. The current rate is available only while this page remains active at this price.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Can I listen offline?</summary>
+      <p>Yes. Once downloaded the files are yours. You can listen on any device without internet connection.</p>
+    </details>
+
+    <details class="faq-item">
+      <summary>Is there a subscription?</summary>
+      <p>No. This is a one-time payment for lifetime ownership of the current archive.</p>
+    </details>
+  </div>
 </section>
 
-<footer style="text-align:center;padding:30px 0;background:#0a0414;color:#c9b6e6;font-size:0.9rem;">
-<p>© 2025 Hórus Audiobook. All rights reserved.</p>
+<!-- ========== FINAL CTA ========== -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Stop Reading. Start Absorbing.</h2>
+    <p>The system is complete. The audio is ready. Access is available now.</p>
+    <a href="https://horusaudiobook.gumroad.com/l/gsypu" class="cta cta-large" target="_blank" rel="noopener">
+      Get the Full Archive — $333
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Hórus Audiobook. All rights reserved.</p>
 </footer>
+
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta">
+  <a href="https://horusaudiobook.gumroad.com/l/gsypu" class="cta" target="_blank" rel="noopener">
+    Buy Now — $333
+  </a>
+</div>
 
 </body>
 </html>
